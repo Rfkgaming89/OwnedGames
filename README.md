@@ -1,2 +1,1 @@
-# OwnedGames
-A list of my owned games and platform
+A list of games I own and what platform I own them on.
