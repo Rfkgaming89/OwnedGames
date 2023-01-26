@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SCP: Secret Laboratory</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> SCP: Secret Laboratory</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-1/21/2023">1/21/2023</a> 20:26:07</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-1/21/2023">1/21/2023</a> 20:35:04</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_completionstatus_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/28/2017">12/28/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-82">82</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Northwood Studios">Northwood Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Northwood Studios">Northwood Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/700330" target="_blank">Steam</a><br/><a href="https://scpslgame.com/" target="_blank">Official Website</a><br/><a href="https://www.reddit.com/r/SCPSecretLab" target="_blank">Reddit</a><br/><a href="https://scp-secret-laboratory-official.fandom.com/wiki/SCP:_Secret_Laboratory_Official_Wiki" target="_blank">Wikia</a><br/><a href="https://www.facebook.com/SCPSL.Official" target="_blank">Facebook</a><br/><a href="https://twitter.com/scpslofficial" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/scpsl_official" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/channel/UC_pcal-oQjes6vtrvpGteTg" target="_blank">Youtube</a><br/><a href="https://www.twitch.tv/directory/game/SCP: Secret Laboratory" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Amidst the chaos of a disastrous mass containment failure at the supposed “master site” Site-02, you fight your way to the top alongside — and against — other players. From devious D-Class and cunning scientists to elite Mobile Task Force units (MTF), rebellious Chaos Insurgency (CI), and even the horrific SCP Entities, there are many key roles to play in this gruesome affair, so... <strong><i>How will you act amidst a containment breach?</i></strong><br><br><i>SCP: Secret Laboratory (SCP: SL)</i> is a free-to-play multiplayer horror game heavily based on the SCP Foundation series and its expanded universe of monsters and paranormal phenomena. The primary objective of the SCP Foundation (also “the Foundation”) is to safeguard the world from any and all entities, objects, or phenomena that are deemed potential threats to humanity, and thus to uphold the normalcy of the modern world. Recently, however, Chaos Insurgency forces have begun acting against the Foundation in pursuit of a future where humanity reigns supreme.<br><br>The question is: <strong><i>What role will you play?</i></strong><br><br><ul class="bb_ul"><li><strong>D-Class Personnel –</strong> Inmates kept within the bowels of the Foundation sites as lab rats; test subjects at the mercy of the Foundation’s cruel practices. Escape from your confines and rebel against your imprisoners — by any means necessary.<br></li><li><strong>Foundation Scientists –</strong> Researchers, engineers, and division specialists; you must ensure your own survival until an MTF extracts you from the ensuing pandemonium. Use your wit — and access cards —  to survive. But be wary of the Class-D scurrying beneath you; they’ll do anything to escape their confines.<br></li><li><strong>Nine-Tailed Fox Units –</strong> The first MTF units to respond to the emergency. Your mission: To extract valuable Foundation personnel and to, with the utmost vehemence, terminate or re-contain any SCPs that have escaped.<br></li><li><strong>Foundation Security –</strong> On-site security personnel charged with restoring order amidst the chaos. Evacuate Scientists, terminate D-Class Personnel, re-contain escaped SCPs, and above all do whatever it takes to restore normalcy to your site.<br></li><li><strong>Chaos Insurgency –</strong> Once a mere splinter cell force and now a formidable military power, yet still but a shadow of their former Foundation employers. Your primary objective is to purge the facility of Foundation personnel and seize the “assets” that are deemed to serve the best interests of Delta Command, your elusive overseers.<br></li><li><strong>SCP Entities –</strong> Typically hostile sentient beings of an anomalous nature, all of which are extremely different from one another. You are to consider yourself an enemy of all humans, and formidable ones at that. Do not accept any attempts to compromise — you are naught but death.</li></ul><br>With each match comes new experiences, thrills, and threats. You will battle for survival with every faction: SCP Entities rampaging on their path to escape, Chaos Insurgency sabotaging the Foundation, MTF and Security mobilizing to secure the facility, and armed Scientists and D-Class who refuse to take “no” for an answer. Be prepared for anything.<br><br>Rest assured, you will encounter many threats. Friends and foes alike will take up arms against you — you may be disintegrated by a tesla gate, or perhaps a hydrogen bomb lying right beneath your feet will begin its countdown to detonation. <strong><i>There are many ways to die, yet in turn, many ways to survive such a hell.</i></strong><br>SCP: SL features a growing roster of SCPs that includes the following:<br><br><ul class="bb_ul"><li><strong>Playable SCPs</strong><br><ul class="bb_ul"><li><strong>SCP-049 –</strong> An archaic plague doctor with the sole intent of “curing” those ridden with the “pestilence”. Contact means death, but only momentarily; you may find that one of the side effects of the good doctor’s surgery is being denied such an easy end.<br></li><li><strong>SCP-079 –</strong> A sentient A.I. that has access to most of the facility's hardware and monitoring systems. With the facility under its control, beware the doors you lock tight for safety becoming the reason for your demise. And always remember: You never know who could be watching. <br></li><li><strong>SCP-096 –</strong> An extremely slender, frail-looking humanoid. It hides its face for a reason. Simply peering at it will induce a state of unstoppable rage, in which it massacres anything around with its immense strength. Running is futile. Don't even peek.<br></li><li><strong>SCP-106 –</strong> A humanoid composed of an anomalous jet-black substance. Contact means certain death, or supposedly an equivalent of such. Presume you’re never safe whilst 106 looms.<br></li><li><strong>SCP-173 –</strong> A mere concrete sculpture, upon first glance. On second glance, you’ll notice it’s somehow closer. There is no third glance — you're dead by then.<br></li><li><strong>SCP-939 –</strong> A pack-dependent predator that intelligently mimics human voices to deceive and entrap its desired prey. Remember who your allies are. Be wary of who you trust. Don't fall for stray imitations, lest you’re repaid with a bite.</li></ul><br></li><li><strong>Object SCPs</strong><br><ul class="bb_ul"><li><strong>SCP-018 –</strong> A red 1969 Blam-O Super Ball that doubles its velocity with each rebound. Only aim towards targets authorized for immediate termination.<br></li><li><strong>SCP-207 –</strong> A bottle of cola, the contents of which offer radically increased motor functioning, for the mere cost of a completely devastated metabolism. You must ask yourself the question: Is momentary salvation worth the torturous death sure to follow?<br></li><li><strong>SCP-244 –</strong> A ceramic jar containing fog that freezes everything within its proximity. Use caution when throwing this item, to avoid self-inflicted harm.<br></li><li><strong>SCP-268 –</strong> A tweed newsboy cap that makes the wearer invisible to the naked eye. Don to avoid death or make a daring escape — the possibilities are endless, so long as you don’t draw unwanted attention.<br></li><li><strong>SCP-330 –</strong> A candy bowl filled with various treats and side effects, but the flavours are to die for. Remember to take no more than two!<br></li><li><strong>SCP-500 –</strong> A single red pill capable of instantaneously curing any affliction. Such a wonder drug is irreplaceable — think carefully before use.<br></li><li><strong>SCP-914 –</strong> An anomalous machine that is capable of improving or degrading whatever contents are placed within — all at the whim of its user.<br></li><li><strong>SCP-1853 –</strong> A vial of a potent, performance-enhancing drug that improves reload speed, recoil control, and more. Be mindful not to consume it alongside other compounds.<br></li><li><strong>SCP-2176 –</strong> An anomalous lightbulb containing a Class-A Ectomorph, capable of disrupting electrical systems within the facility — be careful not to drop it!</li></ul></li></ul><br>Site-02 is an unforgiving place. Stay on your toes, follow protocol, survive or die for the cause, and remember…<h2 class="bb_tag">We die in the dark so others may live in the light.</h2>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬<br><br><i>SCP: SL</i> was initially based on the original single-player horror game <i>SCP – Containment Breach</i> (2012), by Undertow Games. More recently, Northwood Studios deviated from <i>SCP – Containment Breach</i>, creating a unique setting and expanding lore, with an ultimate goal of presenting players with a complete and immersive game experience.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
